@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Banner</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--[if lt IE 9]>
-    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-  <![endif]-->
   <style type="text/css">
     font-face {
       font-family: 'DIN';
@@ -308,6 +306,9 @@
       100% { background-color: #ff94be; }
     }
   </style>
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" media="screen" href="http://192.168.1.86:3000/ie.css">
+  <![endif]-->
   <script>
     window.onload = function() {
       var SECOND = 1000
@@ -345,6 +346,9 @@
   </script>
 </head>
 <body>
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
   <a class="banner" href="http://www.babyshop.se/" target="_top">
     <div class="corner">
       <div class="row">
