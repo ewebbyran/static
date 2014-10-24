@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Banner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+  <style type="text/css">
+    font-face {
+      font-family: 'DIN';
+      src: url('fonts/277AA7_3_0.eot');
+      src: url('fonts/277AA7_3_0.eot?#iefix') format('embedded-opentype'), url('fonts/277AA7_3_0.woff') format('woff'), url('fonts/277AA7_3_0.ttf') format('truetype'), url('fonts/277AA7_3_0.svg#wf') format('svg');
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'DIN';
+      src: url('fonts/277AA7_1_0.eot');
+      src: url('fonts/277AA7_1_0.eot?#iefix') format('embedded-opentype'), url('fonts/277AA7_1_0.woff') format('woff'), url('fonts/277AA7_1_0.ttf') format('truetype'), url('fonts/277AA7_1_0.svg#wf') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @media (width: 160px) and (height: 600px) {
+      .banner {
+        width: 160px;
+        height: 600px;
+        background-image: url(img/1/160x600.jpg);
+      }
+    }
+
+    @media (width: 200px) and (height: 260px) {
+      .banner {
+        width: 200px;
+        height: 260px;
+        background-image: url(img/1/200x260.jpg);
+      }
+    }
+
+    @media (width: 250px) and (height: 360px) {
+      .banner {
+        width: 250px;
+        height: 360px;
+        background-image: url(img/1/250x360.jpg);
+      }
+    }
+
+    @media (width: 300px) and (height: 250px) {
+      .banner {
+        width: 300px;
+        height: 250px;
+        background-image: url(img/1/300x250.jpg);
+      }
+    }
+
+    @media (width: 480px) and (height: 280px) {
+      .banner {
+        width: 480px;
+        height: 280px;
+        background-image: url(img/1/480x280.jpg);
+      }
+    }
+
+    @media (width: 980px) and (height: 120px) {
+      .banner {
+        width: 980px;
+        height: 120px;
+        background-image: url(img/1/980x120.jpg);
+      }
+    }
+
+    @media (width: 980px) and (height: 240px) {
+      .banner {
+        width: 980px;
+        height: 240px;
+        background-image: url(img/1/980x240.jpg);
+      }
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .banner {
+      font-family: 'DIN', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 14px;
+      position: relative;
+      background-repeat: no-repeat;
+      color: #000;
+      display: block;
+    }
+
+    .corner {
+      position: absolute;
+      width: 437px;
+      right: 31px;
+      bottom: 21px;
+    }
+
+    .row {
+      margin-top: 6px;
+    }
+
+    .box,
+    .button {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      background: #fff;
+      height: 42px;
+      line-height: 42px;
+      padding: 0 15px;
+    }
+
+    .box strong {
+      text-transform: uppercase;
+    }
+
+    .button {
+      display: block;
+      color: #fff;
+      width: 87px;
+      text-decoration: none;
+      text-align: center;
+      background: #ff94be;
+      text-transform: uppercase;
+    }
+
+    .clearfix .box {
+      width: 286px;
+      float: left;
+    }
+
+    .clearfix .button {
+      float: right;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+      content: '';
+      display: table;
+    }
+
+    .clearfix:after {
+      clear: both;
+    }
+
+    .clearfix {
+      zoom: 1;
+    }
+
+    .button {
+      -webkit-animation: pulsate 2s ease-out;
+        -webkit-animation-iteration-count: infinite;
+    }
+
+    @-webkit-keyframes pulsate {
+        0% { background: #ff94be; }
+        50% { background: #da4b83; }
+        100% { background: #ff94be; }
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var SECOND = 1000
+        , MINUTE = 60 * SECOND
+        , HOUR = 60 * MINUTE
+        , DAY = 24 * HOUR
+        , end = new Date(2014, 11, 24)
+        , el = document.getElementById('time');
+
+      function getTimeDiff(from, to) {
+        return {
+          // days: ~~((to - from) / DAY),
+          // hours: ~~((to - from) % DAY / HOUR),
+          hours: ~~((to - from) / HOUR),
+          minutes: ~~((to - from) % HOUR / MINUTE),
+          seconds: ~~((to - from) % MINUTE / SECOND)
+        };
+      }
+
+      function render() {
+        var diff = getTimeDiff(new Date().getTime(), end)
+          , units = [];
+
+        // if(diff.days) units.push(diff.days + 'dagar');
+        if(diff.hours) units.push(diff.hours + 'h');
+        if(diff.hours || diff.minutes) units.push(diff.minutes + 'min');
+        if(diff.hours || diff.minutes || diff.seconds) units.push(diff.seconds + 'sek');
+
+        el.innerHTML = 'Slutar gälla om ' + units.join(', ');
+      }
+
+      setInterval(render, 1000);
+      render();
+    };
+  </script>
+</head>
+<body>
+  <a class="banner" href="http://www.babyshop.se/" target="_top">
+    <div class="corner">
+      <div class="row">
+        <div class="box">
+          <strong>20% Rabatt på The brand</strong> (0-12år)
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="box" id="time">
+          Slutar gälla om
+        </div>
+        <div href="#" class="button">Köp här</div>
+      </div>
+    </div>
+  </a>
+</body>
+</html>
