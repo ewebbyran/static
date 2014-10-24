@@ -105,6 +105,14 @@
         background-image: url(img/1/160x600.jpg);
       }
 
+      .long span {
+        display: none;
+      }
+
+      .short {
+        display: none;
+      }
+
       .corner {
         left: 9px;
         right: 9px;
@@ -155,6 +163,10 @@
         bottom: 6px;
       }
 
+      .long {
+        display: none;
+      }
+
       .clearfix .box {
         margin-right: auto;
       }
@@ -177,9 +189,17 @@
         bottom: 7px;
       }
 
+      .long span {
+        display: none;
+      }
+
       .clearfix {
         position: relative;
         padding-bottom: 42px;
+      }
+
+      .clearfix .long {
+        display: none;
       }
 
       .clearfix .box {
@@ -219,6 +239,10 @@
       .clearfix .box {
         margin-right: 52px;
       }
+
+      .clearfix .long {
+        display: none;
+      }
     }
 
     @media (width: 480px) and (height: 280px) {
@@ -226,6 +250,10 @@
         width: 480px;
         height: 280px;
         background-image: url(img/1/480x280.jpg);
+      }
+
+      .short {
+        display: none;
       }
 
       .corner {
@@ -242,6 +270,10 @@
         background-image: url(img/1/980x120.jpg);
       }
 
+      .short {
+        display: none;
+      }
+
       .corner {
         left: 515px;
         right: 15px;
@@ -254,6 +286,10 @@
         width: 980px;
         height: 240px;
         background-image: url(img/1/980x240.jpg);
+      }
+
+      .short {
+        display: none;
       }
 
       .corner {
@@ -278,7 +314,7 @@
         , MINUTE = 60 * SECOND
         , HOUR = 60 * MINUTE
         , DAY = 24 * HOUR
-        , end = new Date(2014, 11, 24)
+        , end = new Date(2014, 9, 26, 23, 59, 59)
         , el = document.getElementById('time');
 
       function getTimeDiff(from, to) {
@@ -300,7 +336,7 @@
         if(diff.hours || diff.minutes) units.push(diff.minutes + 'min');
         if(diff.hours || diff.minutes || diff.seconds) units.push(diff.seconds + 'sek');
 
-        el.innerHTML = 'Slutar gälla om ' + units.join(', ');
+        el.innerHTML = units.join(', ');
       }
 
       setInterval(render, 1000);
@@ -313,13 +349,20 @@
     <div class="corner">
       <div class="row">
         <div class="box">
-          <strong>20% Rabatt på The brand</strong> (0-12år)
+          <div class="long">
+            <strong>20% Rabatt på The brand</strong> <span>(0-12år)</span>
+          </div>
+          <div class="short">
+            <strong>20% på The brand</strong>
+          </div>
         </div>
       </div>
       <div class="row clearfix">
         <div class="button">Köp här</div>
-        <div class="box" id="time">
-          Slutar gälla om
+        <div class="box">
+          <span class="long">Slutar gälla om</span>
+          <span class="short">Slutar om</span>
+          <span id="time"></span>
         </div>
       </div>
     </div>
