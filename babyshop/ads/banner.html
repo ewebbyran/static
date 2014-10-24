@@ -24,62 +24,6 @@
       font-style: normal;
     }
 
-    @media (width: 160px) and (height: 600px) {
-      .banner {
-        width: 160px;
-        height: 600px;
-        background-image: url(img/1/160x600.jpg);
-      }
-    }
-
-    @media (width: 200px) and (height: 260px) {
-      .banner {
-        width: 200px;
-        height: 260px;
-        background-image: url(img/1/200x260.jpg);
-      }
-    }
-
-    @media (width: 250px) and (height: 360px) {
-      .banner {
-        width: 250px;
-        height: 360px;
-        background-image: url(img/1/250x360.jpg);
-      }
-    }
-
-    @media (width: 300px) and (height: 250px) {
-      .banner {
-        width: 300px;
-        height: 250px;
-        background-image: url(img/1/300x250.jpg);
-      }
-    }
-
-    @media (width: 480px) and (height: 280px) {
-      .banner {
-        width: 480px;
-        height: 280px;
-        background-image: url(img/1/480x280.jpg);
-      }
-    }
-
-    @media (width: 980px) and (height: 120px) {
-      .banner {
-        width: 980px;
-        height: 120px;
-        background-image: url(img/1/980x120.jpg);
-      }
-    }
-
-    @media (width: 980px) and (height: 240px) {
-      .banner {
-        width: 980px;
-        height: 240px;
-        background-image: url(img/1/980x240.jpg);
-      }
-    }
-
     body {
       margin: 0;
     }
@@ -91,11 +35,11 @@
       background-repeat: no-repeat;
       color: #000;
       display: block;
+      overflow: hidden;
     }
 
     .corner {
       position: absolute;
-      width: 437px;
       right: 31px;
       bottom: 21px;
     }
@@ -109,9 +53,12 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      background: #fff;
       height: 42px;
       line-height: 42px;
+    }
+
+    .box {
+      background: #fff;
       padding: 0 15px;
     }
 
@@ -125,13 +72,12 @@
       width: 87px;
       text-decoration: none;
       text-align: center;
-      background: #ff94be;
+      background-color: #ff94be;
       text-transform: uppercase;
     }
 
     .clearfix .box {
-      width: 286px;
-      float: left;
+      margin-right: 91px;
     }
 
     .clearfix .button {
@@ -152,15 +98,178 @@
       zoom: 1;
     }
 
+    @media (width: 160px) and (height: 600px) {
+      .banner {
+        width: 160px;
+        height: 600px;
+        background-image: url(img/1/160x600.jpg);
+      }
+
+      .corner {
+        left: 9px;
+        right: 9px;
+        top: 90px;
+        bottom: auto;
+      }
+
+      .box {
+        background-color: transparent;
+        color: #fff;
+        white-space: normal;
+        overflow: visible;
+        font-size: 18px;
+        padding-left: 0;
+        padding-right: 0;
+        line-height: 24px;
+        height: auto;
+      }
+
+      .clearfix {
+        position: relative;
+        padding-bottom: 42px;
+      }
+
+      .clearfix .box {
+        margin-right: auto;
+        margin-bottom: 6px;
+      }
+
+      .button {
+        position: absolute;
+        width: 100%;
+        float: none;
+        bottom: 0;
+      }
+    }
+
+    @media (width: 200px) and (height: 260px) {
+      .banner {
+        width: 200px;
+        height: 260px;
+        background-image: url(img/1/200x260.jpg);
+      }
+
+      .corner {
+        left: 6px;
+        right: 6px;
+        bottom: 6px;
+      }
+
+      .clearfix .box {
+        margin-right: auto;
+      }
+
+      .button {
+        display: none;
+      }
+    }
+
+    @media (width: 250px) and (height: 360px) {
+      .banner {
+        width: 250px;
+        height: 360px;
+        background-image: url(img/1/250x360.jpg);
+      }
+
+      .corner {
+        left: 6px;
+        right: 6px;
+        bottom: 7px;
+      }
+
+      .clearfix {
+        position: relative;
+        padding-bottom: 42px;
+      }
+
+      .clearfix .box {
+        margin-right: auto;
+        margin-bottom: 6px;
+      }
+
+      .clearfix .button {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        float: none;
+      }
+    }
+
+    @media (width: 300px) and (height: 250px) {
+      .corner {
+        left: 6px;
+        right: 6px;
+        bottom: 6px;
+      }
+
+      .banner {
+        width: 300px;
+        height: 250px;
+        background-image: url(img/1/300x250.jpg);
+      }
+
+      .button {
+        width: 48px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-image: url(img/arrow.png);
+        text-indent: -10000px;
+      }
+
+      .clearfix .box {
+        margin-right: 52px;
+      }
+    }
+
+    @media (width: 480px) and (height: 280px) {
+      .banner {
+        width: 480px;
+        height: 280px;
+        background-image: url(img/1/480x280.jpg);
+      }
+
+      .corner {
+        right: 15px;
+        left: 15px;
+        bottom: 11px;
+      }
+    }
+
+    @media (width: 980px) and (height: 120px) {
+      .banner {
+        width: 980px;
+        height: 120px;
+        background-image: url(img/1/980x120.jpg);
+      }
+
+      .corner {
+        left: 515px;
+        right: 15px;
+        bottom: 15px;
+      }
+    }
+
+    @media (width: 980px) and (height: 240px) {
+      .banner {
+        width: 980px;
+        height: 240px;
+        background-image: url(img/1/980x240.jpg);
+      }
+
+      .corner {
+        left: 515px;
+      }
+    }
+
     .button {
       -webkit-animation: pulsate 2s ease-out;
-        -webkit-animation-iteration-count: infinite;
+      -webkit-animation-iteration-count: infinite;
     }
 
     @-webkit-keyframes pulsate {
-        0% { background: #ff94be; }
-        50% { background: #da4b83; }
-        100% { background: #ff94be; }
+      0% { background-color: #ff94be; }
+      50% { background-color: #da4b83; }
+      100% { background-color: #ff94be; }
     }
   </style>
   <script>
@@ -208,10 +317,10 @@
         </div>
       </div>
       <div class="row clearfix">
+        <div class="button">Köp här</div>
         <div class="box" id="time">
           Slutar gälla om
         </div>
-        <div href="#" class="button">Köp här</div>
       </div>
     </div>
   </a>
