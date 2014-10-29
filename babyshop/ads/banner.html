@@ -382,8 +382,17 @@
         , MINUTE = 60 * SECOND
         , HOUR = 60 * MINUTE
         , DAY = 24 * HOUR
-        , end = new Date(2014, 9, 26, 23, 59, 59)
-        , el = document.getElementById('time');
+        , datePattern = /^(\d{4})-(\d{1,2})-(\d{1,2});/
+        , el = document.getElementById('time')
+        , today = new Date()
+        , end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59)
+        , currentDay = today.getDay()
+        , href
+        , tick;
+
+      if(currentDay !== 0) {
+        end.setTime(end.getTime() + DAY * (7 - currentDay));
+      }
 
       function getTimeDiff(from, to) {
         return {
@@ -399,19 +408,31 @@
         var diff = getTimeDiff(new Date().getTime(), end)
           , units = [];
 
-        // if(diff.days) units.push(diff.days + 'dagar');
-        if(diff.hours) units.push(diff.hours + 'h');
-        if(diff.hours || diff.minutes) units.push(diff.minutes + 'min');
-        if(diff.hours || diff.minutes || diff.seconds) units.push(diff.seconds + 'sek');
+        if(diff.hours > 0 || diff.minutes > 0 || diff.seconds) {
+          if(diff.hours) units.push(diff.hours + 'h');
+          if(diff.hours || diff.minutes) units.push(diff.minutes + 'min');
+          if(diff.hours || diff.minutes || diff.seconds) units.push(diff.seconds + 'sek');
+        } else {
+          clearInterval(tick);
+          el.parentNode.innerHTML = 'Kampanj avslutad';
+        }
 
         el.innerHTML = units.join(', ');
       }
 
       if(location.hash) {
-        document.getElementById('link').href = location.hash.substr(1);
+        href = location.hash.substr(1);
+
+        if(datePattern.test(href)) {
+          matches = href.match(datePattern);
+          href = href.replace(datePattern, '');
+          end = new Date(parseInt(matches[1]), parseInt(matches[2]) - 1, parseInt(matches[3]), 23, 59, 59);
+        }
+
+        document.getElementById('link').href = href;
       }
 
-      setInterval(render, 1000);
+      tick = setInterval(render, 1000);
       render();
     };
   </script>
