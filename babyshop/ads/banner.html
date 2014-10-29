@@ -407,13 +407,17 @@
         el.innerHTML = units.join(', ');
       }
 
+      if(location.hash) {
+        document.getElementById('link').href = location.hash.substr(1);
+      }
+
       setInterval(render, 1000);
       render();
     };
   </script>
 </head>
 <body>
-  <a class="banner" href="http://www.babyshop.se/" target="_top">
+  <a id="link" class="banner" href="http://www.babyshop.se/" target="_top">
     <div class="corner">
       <div class="row">
         <div class="box">
