@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Banner</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css">
+    font-face {
+      font-family: 'DIN';
+      src: url('fonts/277AA7_3_0.eot');
+      src: url('fonts/277AA7_3_0.eot?#iefix') format('embedded-opentype'), url('fonts/277AA7_3_0.woff') format('woff'), url('fonts/277AA7_3_0.ttf') format('truetype'), url('fonts/277AA7_3_0.svg#wf') format('svg');
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'DIN';
+      src: url('fonts/277AA7_1_0.eot');
+      src: url('fonts/277AA7_1_0.eot?#iefix') format('embedded-opentype'), url('fonts/277AA7_1_0.woff') format('woff'), url('fonts/277AA7_1_0.ttf') format('truetype'), url('fonts/277AA7_1_0.svg#wf') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .banner {
+      font-family: 'DIN', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 14px;
+      position: relative;
+      background-repeat: no-repeat;
+      color: #000;
+      display: block;
+      overflow: hidden;
+    }
+
+    .corner {
+      position: absolute;
+      right: 31px;
+      bottom: 21px;
+    }
+
+    .row {
+      margin-top: 6px;
+    }
+
+    .box,
+    .button {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      height: 42px;
+      line-height: 42px;
+    }
+
+    .box {
+      background: #fff;
+      padding: 0 15px;
+    }
+
+    .box strong {
+      text-transform: uppercase;
+    }
+
+    .button {
+      display: block;
+      color: #fff;
+      width: 87px;
+      text-decoration: none;
+      text-align: center;
+      background-color: #ff94be;
+      text-transform: uppercase;
+    }
+
+    .clearfix .box {
+      margin-right: 91px;
+    }
+
+    .clearfix .button {
+      float: right;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+      content: '';
+      display: table;
+    }
+
+    .clearfix:after {
+      clear: both;
+    }
+
+    .clearfix {
+      zoom: 1;
+    }
+
+    @media (min-width: 160px) and (min-height: 600px) and (max-width: 160px) and (max-height: 600px) {
+      .banner {
+        width: 160px;
+        height: 600px;
+        background-image: url('img/2/160x600.jpg');
+      }
+
+      .long span {
+        display: none;
+      }
+
+      .clearfix:before,
+      .clearfix:after {
+        display: none;
+      }
+
+      .short {
+        display: none;
+      }
+
+      .corner {
+        left: 9px;
+        right: 9px;
+        top: 90px;
+        bottom: auto;
+      }
+
+      .box {
+        background-color: transparent;
+        color: #fff;
+        white-space: normal;
+        overflow: visible;
+        font-size: 18px;
+        padding-left: 0;
+        padding-right: 0;
+        line-height: 24px;
+        height: auto;
+      }
+
+      .clearfix {
+        position: relative;
+        padding-bottom: 42px;
+      }
+
+      .clearfix .box {
+        margin-right: auto;
+        margin-bottom: 6px;
+      }
+
+      .button {
+        position: absolute;
+        width: 100%;
+        float: none;
+        bottom: 0;
+      }
+    }
+
+    @media (min-width: 200px) and (min-height: 260px) and (max-width: 200px) and (max-height: 260px) {
+      .banner {
+        width: 200px;
+        height: 260px;
+        background-image: url('img/2/200x260.jpg');
+      }
+
+      .corner {
+        left: 6px;
+        right: 6px;
+        bottom: 6px;
+      }
+
+      .long {
+        display: none;
+      }
+
+      .box {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .clearfix .box {
+        margin-right: auto;
+      }
+
+      .button {
+        display: none;
+      }
+    }
+
+    @media (min-width: 250px) and (min-height: 360px) and (max-width: 250px) and (max-height: 360px) {
+      .banner {
+        width: 250px;
+        height: 360px;
+        background-image: url('img/2/250x360.jpg');
+      }
+
+      .corner {
+        left: 6px;
+        right: 6px;
+        bottom: 7px;
+      }
+
+      .long span {
+        display: none;
+      }
+
+      .clearfix {
+        position: relative;
+        padding-bottom: 42px;
+      }
+
+      .clearfix:before,
+      .clearfix:after {
+        display: none;
+      }
+
+      .clearfix .long {
+        display: none;
+      }
+
+      .clearfix .box {
+        margin-right: auto;
+        margin-bottom: 6px;
+      }
+
+      .clearfix .button {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        float: none;
+      }
+    }
+
+    @media (min-width: 300px) and (min-height: 250px) and (max-width: 300px) and (max-height: 250px) {
+      .corner {
+        left: 6px;
+        right: 6px;
+        bottom: 6px;
+      }
+
+      .banner {
+        width: 300px;
+        height: 250px;
+        background-image: url('img/2/300x250.jpg');
+      }
+
+      .button {
+        width: 48px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-image: url('img/arrow.png');
+        text-indent: -10000px;
+      }
+
+      .clearfix .box {
+        margin-right: 52px;
+      }
+
+      .clearfix .long {
+        display: none;
+      }
+    }
+
+    @media (min-width: 480px) and (min-height: 280px) and (max-width: 480px) and (max-height: 280px) {
+      .banner {
+        font-size: 18px;
+        width: 480px;
+        height: 280px;
+        background-image: url('img/2/480x280.jpg');
+      }
+
+      .box, .button {
+        padding-top: 2px;
+        line-height: 40px;
+        height: 40px;
+      }
+
+      .short {
+        display: none;
+      }
+
+      .corner {
+        right: 15px;
+        left: 15px;
+        bottom: 11px;
+      }
+    }
+
+    @media (min-width: 980px) and (min-height: 120px) and (max-width: 980px) and (max-height: 120px) {
+      .banner {
+        font-size: 18px;
+        width: 980px;
+        height: 120px;
+        background-image: url('img/2/980x120.jpg');
+      }
+
+      .box, .button {
+        padding-top: 2px;
+        line-height: 40px;
+        height: 40px;
+      }
+
+      .short {
+        display: none;
+      }
+
+      .corner {
+        left: 515px;
+        right: 15px;
+        bottom: 15px;
+      }
+    }
+
+    @media (min-width: 980px) and (min-height: 240px) and (max-width: 980px) and (max-height: 240px) {
+      .banner {
+        font-size: 18px;
+        width: 980px;
+        height: 240px;
+        background-image: url('img/2/980x240.jpg');
+      }
+
+      .box, .button {
+        padding-top: 2px;
+        line-height: 40px;
+        height: 40px;
+      }
+
+      .short {
+        display: none;
+      }
+
+      .corner {
+        left: 515px;
+      }
+    }
+
+    .button {
+      -webkit-animation: pulsate 2s ease-out;
+      -webkit-animation-iteration-count: infinite;
+    }
+
+    @-webkit-keyframes pulsate {
+      0% { background-color: #ff94be; }
+      50% { background-color: #da4b83; }
+      100% { background-color: #ff94be; }
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script>
+      var style = document.getElementsByTagName('style')[0].innerHTML;
+      var pattern = /@media \(min-width: (\d+)px\) and \(min-height: (\d+)px\) and \(max-width: \d+px\) and \(max-height: \d+px\)\s+\{/g;
+      var result;
+      while(result = pattern.exec(style)) {
+        if(result[1] === '' + document.documentElement.offsetWidth && result[2] === '' + document.documentElement.offsetHeight) {
+          var opened = 1;
+          var index = pattern.lastIndex;
+
+          while(opened) {
+            var open = style.indexOf('{', index);
+            var close = style.indexOf('}', index);
+
+            if(open > close) {
+              opened--;
+              index = close + 1;
+            } else {
+              opened++;
+              index = open + 1;
+            }
+          }
+
+          var el = document.createElement('style');
+
+          el.setAttribute('type', 'text/css');
+          el.styleSheet.cssText = style.slice(pattern.lastIndex, index - 1);
+
+          document.getElementsByTagName('head')[0].appendChild(el);
+          break;
+        }
+      }
+    </script>
+  <![endif]-->
+  <script>
+    window.onload = function() {
+      var SECOND = 1000
+        , MINUTE = 60 * SECOND
+        , HOUR = 60 * MINUTE
+        , DAY = 24 * HOUR
+        , datePattern = /^(\d{4})-(\d{1,2})-(\d{1,2});/
+        , el = document.getElementById('time')
+        , today = new Date()
+        , end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59)
+        , currentDay = today.getDay()
+        , href
+        , tick;
+
+      if(currentDay !== 0) {
+        end.setTime(end.getTime() + DAY * (7 - currentDay));
+      }
+
+      function getTimeDiff(from, to) {
+        return {
+          // days: ~~((to - from) / DAY),
+          // hours: ~~((to - from) % DAY / HOUR),
+          hours: ~~((to - from) / HOUR),
+          minutes: ~~((to - from) % HOUR / MINUTE),
+          seconds: ~~((to - from) % MINUTE / SECOND)
+        };
+      }
+
+      function render() {
+        var diff = getTimeDiff(new Date().getTime(), end)
+          , units = [];
+
+        if(diff.hours > 0 || diff.minutes > 0 || diff.seconds) {
+          if(diff.hours) units.push(diff.hours + 'h');
+          if(diff.hours || diff.minutes) units.push(diff.minutes + 'min');
+          if(diff.hours || diff.minutes || diff.seconds) units.push(diff.seconds + 'sek');
+        } else {
+          clearInterval(tick);
+          el.parentNode.innerHTML = 'Kampanj avslutad';
+        }
+
+        el.innerHTML = units.join(', ');
+      }
+
+      if(location.hash) {
+        href = location.hash.substr(1);
+
+        if(datePattern.test(href)) {
+          matches = href.match(datePattern);
+          href = href.replace(datePattern, '');
+          end = new Date(parseInt(matches[1]), parseInt(matches[2]) - 1, parseInt(matches[3]), 23, 59, 59);
+        }
+
+        document.getElementById('link').href = href;
+      }
+
+      tick = setInterval(render, 1000);
+      render();
+    };
+  </script>
+</head>
+<body>
+  <a id="link" class="banner" href="http://www.babyshop.se/" target="_top">
+    <div class="corner">
+      <div class="row">
+        <div class="box">
+          <div class="long">
+            <strong>20% Rabatt på Geggamoja</strong> <span>(0-12år)</span>
+          </div>
+          <div class="short">
+            <strong>20% på Geggamoja</strong>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="button">Köp här</div>
+        <div class="box">
+          <span class="long">Slutar gälla om</span>
+          <span class="short">Slutar om</span>
+          <span id="time"></span>
+        </div>
+      </div>
+    </div>
+  </a>
+</body>
+</html>

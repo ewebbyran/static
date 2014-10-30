@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Banners</title>
+  <style>
+    code {
+      background: #eee;
+      border: 1px solid #cdcdcd;
+    }
+  </style>
 </head>
 <body>
-  <h1>Banners</h1>
+  <h1>Information</h1>
+  <p>Bestäm sluttid och länk enkelt genom att ange <code>&lt;iframe src="//static.ewebbyran.se/babyshop/ads/banner.html<strong>#2014-10-13;http://valfri.nu/lank</strong>" ...&gt;&lt;/iframe&gt;</code> i iframe src attributen.</p>
   <script>
     var sizes = [
       [160, 600],
@@ -25,14 +32,17 @@
       return a[1] - b[1];
     });
 
-    for(var i = 0; i < sizes.length; i++) {
-      var size = sizes[i]
-        , width = size[0]
-        , height = size[1];
+    for(var x = 1; x <= 2; x++) {
+      document.write('<h1>Kampanj #' + x + '</h1>');
+      for(var i = 0; i < sizes.length; i++) {
+        var size = sizes[i]
+          , width = size[0]
+          , height = size[1];
 
-      document.write('<h2>' + width + 'x' + height + '</h2>');
-      document.write('<p>&lt;iframe src="//static.ewebbyran.se/babyshop/ads/banner.html" frameBorder="0" width="' + width + '" height="' + height + '"&gt;&lt;/iframe&gt;</p>');
-      document.write('<iframe src="banner.html" frameBorder="0" width="' + width + '" height="' + height + '"></iframe>');
+        document.write('<h2>' + width + 'x' + height + '</h2>');
+        document.write('<p><code>&lt;iframe src="//static.ewebbyran.se/babyshop/ads/banner' + x + '.html" frameBorder="0" width="' + width + '" height="' + height + '"&gt;&lt;/iframe&gt;</code></p>');
+        document.write('<iframe src="banner' + x + '.html" frameBorder="0" width="' + width + '" height="' + height + '"></iframe>');
+      }
     }
   </script>
 </body>
