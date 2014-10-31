@@ -100,7 +100,7 @@
       .banner {
         width: 160px;
         height: 600px;
-        background-image: url('img/%s/160x600.jpg');
+        background-image: url('img/1/160x600.jpg');
       }
 
       .long span {
@@ -157,7 +157,7 @@
       .banner {
         width: 200px;
         height: 260px;
-        background-image: url('img/%s/200x260.jpg');
+        background-image: url('img/1/200x260.jpg');
       }
 
       .corner {
@@ -188,7 +188,7 @@
       .banner {
         width: 250px;
         height: 360px;
-        background-image: url('img/%s/250x360.jpg');
+        background-image: url('img/1/250x360.jpg');
       }
 
       .corner {
@@ -238,7 +238,7 @@
       .banner {
         width: 300px;
         height: 250px;
-        background-image: url('img/%s/300x250.jpg');
+        background-image: url('img/1/300x250.jpg');
       }
 
       .button {
@@ -263,7 +263,7 @@
         font-size: 18px;
         width: 480px;
         height: 280px;
-        background-image: url('img/%s/480x280.jpg');
+        background-image: url('img/1/480x280.jpg');
       }
 
       .box, .button {
@@ -288,7 +288,7 @@
         font-size: 18px;
         width: 980px;
         height: 120px;
-        background-image: url('img/%s/980x120.jpg');
+        background-image: url('img/1/980x120.jpg');
       }
 
       .box, .button {
@@ -313,7 +313,7 @@
         font-size: 18px;
         width: 980px;
         height: 240px;
-        background-image: url('img/%s/980x240.jpg');
+        background-image: url('img/1/980x240.jpg');
       }
 
       .box, .button {
@@ -350,10 +350,12 @@
 
     var styleTag = document.getElementsByTagName('style')[0];
 
-    if(styleTag.styleSheet && styleTag.styleSheet.cssText) {
-      styleTag.styleSheet.cssText = styleTag.innerHTML.replace(/%s/g, '');
-    } else {
-      styleTag.innerHTML = styleTag.innerHTML.replace(/%s/g, matches[1]);
+    if(matches[1]) {
+      if(styleTag.styleSheet && styleTag.styleSheet.cssText) {
+        styleTag.styleSheet.cssText = styleTag.innerHTML.replace(/\/1\//g, '/' + matches[1] + '/');
+      } else {
+        styleTag.innerHTML = styleTag.innerHTML.replace(/\/1\//g, '/' + matches[1] + '/');
+      }
     }
 
     window.onload = function() {
