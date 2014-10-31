@@ -26,6 +26,8 @@
   <button id="reload">Save</button>
   <div id="result">
     <script>
+      if('JSON' in window === false) alert('Din webbläsare stödjer inte json.');
+
       var entityMap = {
         '&' : '&amp;',
         '<' : '&lt;',
@@ -42,8 +44,15 @@
         link: 'http://www.babyshop.se/'
       };
 
+      if(location.hash) {
+        try {
+          options = JSON.parse(location.hash.substr(1));
+        } catch(e) {}
+      }
+
       window.onload = function() {
         document.getElementById('reload').onclick = function() {
+          location.hash = JSON.stringify(options);
           reload();
         };
         var ids = ['campaign', 'date', 'brand', 'link'];
