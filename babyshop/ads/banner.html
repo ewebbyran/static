@@ -103,7 +103,7 @@
         background-image: url('img/1/160x600.jpg');
       }
 
-      .long span {
+      .long .age {
         display: none;
       }
 
@@ -197,7 +197,7 @@
         bottom: 7px;
       }
 
-      .long span {
+      .long .age {
         display: none;
       }
 
@@ -400,7 +400,7 @@
       }
 
       end = new Date(parseInt(matches[2]), parseInt(matches[3]) - 1, parseInt(matches[4]), 23, 59, 59);
-      document.getElementById('brand1').innerHTML = brand;
+      document.getElementById('brand2').innerHTML = brand;
       document.getElementById('brand2').innerHTML = brand;
 
       if(href) {
@@ -452,7 +452,7 @@
       <div class="row">
         <div class="box">
           <div class="long">
-            <strong>20% Rabatt på <span id="brand1"></span></strong> <span>(0-12år)</span>
+            <strong>20% Rabatt på <span id="brand1"></span></strong> <span class="age">(0-12år)</span>
           </div>
           <div class="short">
             <strong>20% på <span id="brand2"></span></strong>
