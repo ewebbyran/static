@@ -48,7 +48,11 @@
         try {
           options = JSON.parse(location.hash.substr(1));
         } catch(e) {
-          alert('Något fel inträffade när vi försökte läsa in kampanj inställningarna!');
+          try {
+            options = JSON.parse(decodeURI(location.hash.substr(1)));
+          } catch(e) {
+            alert('Något fel inträffade när vi försökte läsa in kampanj inställningarna!');
+          }
         }
       }
 
