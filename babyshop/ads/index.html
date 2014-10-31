@@ -47,7 +47,9 @@
       if(location.hash) {
         try {
           options = JSON.parse(location.hash.substr(1));
-        } catch(e) {}
+        } catch(e) {
+          alert('Något fel inträffade när vi försökte läsa in kampanj inställningarna!');
+        }
       }
 
       window.onload = function() {
