@@ -100,7 +100,7 @@
       .banner {
         width: 160px;
         height: 600px;
-        background-image: url('img/1/160x600.jpg');
+        background-image: url('img/%s/160x600.jpg');
       }
 
       .long span {
@@ -157,7 +157,7 @@
       .banner {
         width: 200px;
         height: 260px;
-        background-image: url('img/1/200x260.jpg');
+        background-image: url('img/%s/200x260.jpg');
       }
 
       .corner {
@@ -188,7 +188,7 @@
       .banner {
         width: 250px;
         height: 360px;
-        background-image: url('img/1/250x360.jpg');
+        background-image: url('img/%s/250x360.jpg');
       }
 
       .corner {
@@ -238,7 +238,7 @@
       .banner {
         width: 300px;
         height: 250px;
-        background-image: url('img/1/300x250.jpg');
+        background-image: url('img/%s/300x250.jpg');
       }
 
       .button {
@@ -263,7 +263,7 @@
         font-size: 18px;
         width: 480px;
         height: 280px;
-        background-image: url('img/1/480x280.jpg');
+        background-image: url('img/%s/480x280.jpg');
       }
 
       .box, .button {
@@ -288,7 +288,7 @@
         font-size: 18px;
         width: 980px;
         height: 120px;
-        background-image: url('img/1/980x120.jpg');
+        background-image: url('img/%s/980x120.jpg');
       }
 
       .box, .button {
@@ -313,7 +313,7 @@
         font-size: 18px;
         width: 980px;
         height: 240px;
-        background-image: url('img/1/980x240.jpg');
+        background-image: url('img/%s/980x240.jpg');
       }
 
       .box, .button {
@@ -342,6 +342,73 @@
       100% { background-color: #ff94be; }
     }
   </style>
+  <script>
+    var hashPattern = /^(?:(\d+)\|)?(?:(\d{4})-(\d{1,2})-(\d{1,2})\|)?(?:((?!https?:\/\/).*)\|)?(.*)/
+      , matches = location.hash.substr(1).match(hashPattern)
+      , href = matches[6]
+      , brand = matches[5];
+
+    var styleTag = document.getElementsByTagName('style')[0];
+
+    if(styleTag.styleSheet && styleTag.styleSheet.cssText) {
+      styleTag.styleSheet.cssText = styleTag.innerHTML.replace(/%s/g, '');
+    } else {
+      styleTag.innerHTML = styleTag.innerHTML.replace(/%s/g, matches[1]);
+    }
+
+    window.onload = function() {
+      var SECOND = 1000
+        , MINUTE = 60 * SECOND
+        , HOUR = 60 * MINUTE
+        , DAY = 24 * HOUR
+        , el = document.getElementById('time')
+        , today = new Date()
+        , end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59)
+        , currentDay = today.getDay()
+        , tick;
+
+      if(currentDay !== 0) {
+        end.setTime(end.getTime() + DAY * (7 - currentDay));
+      }
+
+      function getTimeDiff(from, to) {
+        return {
+          // days: ~~((to - from) / DAY),
+          // hours: ~~((to - from) % DAY / HOUR),
+          hours: ~~((to - from) / HOUR),
+          minutes: ~~((to - from) % HOUR / MINUTE),
+          seconds: ~~((to - from) % MINUTE / SECOND)
+        };
+      }
+
+      function render() {
+        var diff = getTimeDiff(new Date().getTime(), end)
+          , units = [];
+
+        if(diff.hours > 0 || diff.minutes > 0 || diff.seconds) {
+          if(diff.hours) units.push(diff.hours + 'h');
+          if(diff.hours || diff.minutes) units.push(diff.minutes + 'min');
+          if(diff.hours || diff.minutes || diff.seconds) units.push(diff.seconds + 'sek');
+        } else {
+          clearInterval(tick);
+          el.parentNode.innerHTML = 'Kampanj avslutad';
+        }
+
+        el.innerHTML = units.join(', ');
+      }
+
+      end = new Date(parseInt(matches[2]), parseInt(matches[3]) - 1, parseInt(matches[4]), 23, 59, 59);
+      document.getElementById('brand1').innerHTML = brand;
+      document.getElementById('brand2').innerHTML = brand;
+
+      if(href) {
+        document.getElementById('link').href = href;
+      }
+
+      tick = setInterval(render, 1000);
+      render();
+    };
+  </script>
   <!--[if lt IE 9]>
     <script>
       var style = document.getElementsByTagName('style')[0].innerHTML;
@@ -376,77 +443,17 @@
       }
     </script>
   <![endif]-->
-  <script>
-    window.onload = function() {
-      var SECOND = 1000
-        , MINUTE = 60 * SECOND
-        , HOUR = 60 * MINUTE
-        , DAY = 24 * HOUR
-        , datePattern = /^(\d{4})-(\d{1,2})-(\d{1,2});/
-        , el = document.getElementById('time')
-        , today = new Date()
-        , end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59)
-        , currentDay = today.getDay()
-        , href
-        , tick;
-
-      if(currentDay !== 0) {
-        end.setTime(end.getTime() + DAY * (7 - currentDay));
-      }
-
-      function getTimeDiff(from, to) {
-        return {
-          // days: ~~((to - from) / DAY),
-          // hours: ~~((to - from) % DAY / HOUR),
-          hours: ~~((to - from) / HOUR),
-          minutes: ~~((to - from) % HOUR / MINUTE),
-          seconds: ~~((to - from) % MINUTE / SECOND)
-        };
-      }
-
-      function render() {
-        var diff = getTimeDiff(new Date().getTime(), end)
-          , units = [];
-
-        if(diff.hours > 0 || diff.minutes > 0 || diff.seconds) {
-          if(diff.hours) units.push(diff.hours + 'h');
-          if(diff.hours || diff.minutes) units.push(diff.minutes + 'min');
-          if(diff.hours || diff.minutes || diff.seconds) units.push(diff.seconds + 'sek');
-        } else {
-          clearInterval(tick);
-          el.parentNode.innerHTML = 'Kampanj avslutad';
-        }
-
-        el.innerHTML = units.join(', ');
-      }
-
-      if(location.hash) {
-        href = location.hash.substr(1);
-
-        if(datePattern.test(href)) {
-          matches = href.match(datePattern);
-          href = href.replace(datePattern, '');
-          end = new Date(parseInt(matches[1]), parseInt(matches[2]) - 1, parseInt(matches[3]), 23, 59, 59);
-        }
-
-        document.getElementById('link').href = href;
-      }
-
-      tick = setInterval(render, 1000);
-      render();
-    };
-  </script>
 </head>
 <body>
-  <a id="link" class="banner" href="http://www.babyshop.se/" target="_top">
+  <a id="link" class="banner" href="http://www.babyshop.se/" target="_blank">
     <div class="corner">
       <div class="row">
         <div class="box">
           <div class="long">
-            <strong>20% Rabatt på The brand</strong> <span>(0-12år)</span>
+            <strong>20% Rabatt på <span id="brand1"></span></strong> <span>(0-12år)</span>
           </div>
           <div class="short">
-            <strong>20% på The brand</strong>
+            <strong>20% på <span id="brand2"></span></strong>
           </div>
         </div>
       </div>

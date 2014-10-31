@@ -12,38 +12,95 @@
 </head>
 <body>
   <h1>Information</h1>
-  <p>Bestäm sluttid och länk enkelt genom att ange <code>&lt;iframe src="//static.ewebbyran.se/babyshop/ads/banner.html<strong>#2014-10-13;http://valfri.nu/lank</strong>" ...&gt;&lt;/iframe&gt;</code> i iframe src attributen.</p>
-  <script>
-    var sizes = [
-      [160, 600],
-      [200, 260],
-      [250, 360],
-      [300, 250],
-      [480, 280],
-      [980, 120],
-      [980, 240]
-    ];
+  <p>Bestäm sluttid och länk enkelt genom att ange <code>&lt;iframe src="//static.ewebbyran.se/babyshop/ads/banner.html<strong>#1|2014-11-13|Brand|http://valfri.nu/lank</strong>" ...&gt;&lt;/iframe&gt;</code> i iframe src attributen.</p>
+  <dl>
+    <dt>Kampanj nummer</dt>
+    <dd><input type="number" id="campaign"></dd>
+    <dt>Kampanj slutdatum</dt>
+    <dd><input type="date" id="date"></dd>
+    <dt>Kampanj brand</dt>
+    <dd><input type="text" id="brand"></dd>
+    <dt>Kampanj länk</dt>
+    <dd><input type="url" id="link"></dd>
+  </dl>
+  <button id="reload">Save</button>
+  <div id="result">
+    <script>
+      var entityMap = {
+        '&' : '&amp;',
+        '<' : '&lt;',
+        '>' : '&gt;',
+        '"' : '&quot;',
+        '\'': '&#39;',
+        '/' : '&#x2F;'
+      };
 
-    sizes.sort(function(a, b) {
-      if(a[1] - b[1] === 0) {
-        return a[0] - b[0];
+      var options = {
+        campaign: 1,
+        date: '2014-11-01',
+        brand: 'Olle',
+        link: 'http://aftonbladet.se/'
+      };
+
+      window.onload = function() {
+        document.getElementById('reload').onclick = function() {
+          reload();
+        };
+        var ids = ['campaign', 'date', 'brand', 'link'];
+        for(var i = 0; i < ids.length; i++) {
+          (function(id, el) {
+            el.value = options[id];
+            el.onchange = function() {
+              options[id] = this.value;
+            };
+          })(ids[i], document.getElementById(ids[i]));
+        }
+      };
+
+      function escapeHtml(string) {
+        return String(string).replace(/[&<>"'\/]/g, function (s) {
+          return entityMap[s];
+        });
       }
 
-      return a[1] - b[1];
-    });
-
-    for(var x = 1; x <= 2; x++) {
-      document.write('<h1>Kampanj #' + x + '</h1>');
-      for(var i = 0; i < sizes.length; i++) {
-        var size = sizes[i]
-          , width = size[0]
-          , height = size[1];
-
-        document.write('<h2>' + width + 'x' + height + '</h2>');
-        document.write('<p><code>&lt;iframe src="//static.ewebbyran.se/babyshop/ads/banner' + x + '.html" frameBorder="0" width="' + width + '" height="' + height + '"&gt;&lt;/iframe&gt;</code></p>');
-        document.write('<iframe src="banner' + x + '.html" frameBorder="0" width="' + width + '" height="' + height + '"></iframe>');
+      function reload() {
+        document.getElementById('result').innerHTML = render(options.campaign, options.date, options.brand, options.link);
       }
-    }
-  </script>
+
+      function render(campaign, date, name, link) {
+        var output = [];
+        for(var i = 0; i < sizes.length; i++) {
+          var size = sizes[i]
+            , width = size[0]
+            , height = size[1];
+
+          output.push('<h2>' + width + 'x' + height + '</h2>');
+          output.push('<p><code>&lt;iframe src="//static.ewebbyran.se/babyshop/ads/banner.html#' + escapeHtml(campaign) + '|' + escapeHtml(date) + '|' + escapeHtml(name) + '|' + escapeHtml(link) + '" frameBorder="0" width="' + width + '" height="' + height + '"&gt;&lt;/iframe&gt;</code></p>');
+          output.push('<iframe src="banner.html#' + escapeHtml(campaign) + '|' + escapeHtml(date) + '|' + escapeHtml(name) + '|' + escapeHtml(link) + '" frameBorder="0" width="' + width + '" height="' + height + '"></iframe>');
+        }
+        return output.join('');
+      }
+
+      var sizes = [
+        [160, 600],
+        [200, 260],
+        [250, 360],
+        [300, 250],
+        [480, 280],
+        [980, 120],
+        [980, 240]
+      ];
+
+      sizes.sort(function(a, b) {
+        if(a[1] - b[1] === 0) {
+          return a[0] - b[0];
+        }
+
+        return a[1] - b[1];
+      });
+
+      document.write(render(options.campaign, options.date, options.brand, options.link));
+    </script>
+  </div>
 </body>
 </html>
